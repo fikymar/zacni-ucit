@@ -11,6 +11,8 @@ import {
   setButtonIsDisabled,
 } from '../../store/firstStep/actions';
 import { FirstStepForm } from '../../common/types';
+import { theme } from '../../common/theme';
+import CustomStepper from '../../components/Stepper';
 
 type Props = {
   stages: Array<FirstStepForm>;
@@ -28,6 +30,9 @@ const Home: FC<Props> = ({
 }) => {
   const router = useRouter();
   // const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
+
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
     <Wrap>
       <StyleWrapper margin="3rem 0 1rem 0">
@@ -41,6 +46,9 @@ const Home: FC<Props> = ({
           učit třeba hned.
         </LightText>
       </StyleWrapper>
+
+      <CustomStepper activeStep={activeStep} />
+
       <form>
         <H3>Na jakém školním stupni chcete učit?</H3>
         <StyleWrapper margin="2rem 0">
@@ -67,8 +75,10 @@ const Home: FC<Props> = ({
             disabled={buttonIsDisabled}
             padding="1.5rem 2rem"
             margin="2.5rem 0 0 0"
+            bgColor={theme.color.primary}
             onClick={() => {
               router.push('/vyber-predmetu');
+              // nextStep();
             }}
           />
         </StyleWrapper>

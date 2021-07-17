@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Wrap } from './styled';
 import { AppState } from '../../store/';
@@ -15,6 +15,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import CustomStepper from '../../components/Stepper';
+import { theme } from '../../common/theme';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,7 +45,8 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
   };
   return (
     <Wrap>
-      <StyleWrapper margin="3rem 0 1rem 0">
+      <CustomStepper activeStep={1} />
+      <StyleWrapper margin="0rem 0 1rem 0">
         <H2>Jaký předmět chcete učit?</H2>
       </StyleWrapper>
       <PrimaryText>
@@ -83,6 +86,7 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
           type="button"
           padding="1.5rem 2rem"
           margin="2.5rem 0 0 0"
+          bgColor={theme.color.primary}
           onClick={() => {
             router.push('/vyber-vzdelani');
           }}

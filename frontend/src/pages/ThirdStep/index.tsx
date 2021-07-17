@@ -15,6 +15,8 @@ import {
   FirstStepForm,
   SecondStepForm,
 } from '../../common/types';
+import CustomStepper from '../../components/Stepper';
+import { theme } from '../../common/theme';
 
 type Props = {
   stages: Array<ThirdStepForm>;
@@ -38,7 +40,8 @@ const ThirdStep: FC<Props> = ({
   // const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
   return (
     <Wrap>
-      <StyleWrapper margin="3rem 0 1rem 0">
+      <CustomStepper activeStep={2} />
+      <StyleWrapper margin="0rem 0 1rem 0">
         <H2>Jaké je Vaše vzdělání?</H2>
       </StyleWrapper>
       <H3>
@@ -84,6 +87,7 @@ const ThirdStep: FC<Props> = ({
             disabled={buttonIsDisabled}
             padding="1.5rem 2rem"
             margin="2.5rem 0 0 0"
+            bgColor={theme.color.primary}
             onClick={() => {
               router.push('/vyber-specializace');
             }}
