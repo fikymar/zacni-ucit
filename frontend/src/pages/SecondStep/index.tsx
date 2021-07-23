@@ -17,6 +17,7 @@ import Select from '@material-ui/core/Select';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import CustomStepper from '../../components/Stepper';
 import { theme } from '../../common/theme';
+import { Hint } from '../../components/Hint';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,6 +50,9 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
       <StyleWrapper margin="0rem 0 1rem 0">
         <H2>Jaký předmět chcete učit?</H2>
       </StyleWrapper>
+      <Hint hintText="Chcete učit více předmětů?" />
+      <Hint hintText="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
+
       <PrimaryText>
         Pro{' '}
         {firstStep.chooseDegreeState.map((button, idx) => {

@@ -13,6 +13,7 @@ import {
 import { FirstStepForm } from '../../common/types';
 import { theme } from '../../common/theme';
 import CustomStepper from '../../components/Stepper';
+import { Hint } from '../../components/Hint';
 
 type Props = {
   stages: Array<FirstStepForm>;
@@ -51,6 +52,7 @@ const Home: FC<Props> = ({
 
       <form>
         <H3>Na jakém školním stupni chcete učit?</H3>
+        <Hint hintText="Příběhy učitelů z praxe" />
         <StyleWrapper margin="2rem 0">
           {firstStep.chooseDegreeState.map((button, idx) => (
             <Input

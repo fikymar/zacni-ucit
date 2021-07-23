@@ -17,6 +17,7 @@ import {
 } from '../../common/types';
 import CustomStepper from '../../components/Stepper';
 import { theme } from '../../common/theme';
+import { Hint } from '../../components/Hint';
 
 type Props = {
   stages: Array<ThirdStepForm>;
@@ -62,6 +63,7 @@ const ThirdStep: FC<Props> = ({
           předmětů ze SOU nebo SOŠ.
         </LightText>
       </StyleWrapper>
+      <Hint hintText="Nevíte si rady? Napište nám" />
       <form>
         <StyleWrapper margin="2rem 0">
           {thirdStep.chooseDegreeState.map((button, idx) => (
