@@ -36,10 +36,10 @@ const Home: FC<Props> = ({
 
   return (
     <Wrap>
-      <StyleWrapper margin="3rem 0 1rem 0">
+      <StyleWrapper margin="3rem 0 0rem 0">
         <H2>Chcete se stát učitelem, ale nevíte jak na to?</H2>
       </StyleWrapper>
-      <StyleWrapper margin="0 0 3rem 0">
+      <StyleWrapper margin="0.5rem 0 1rem 0">
         <LightText>
           Udělejte další krok na cestě za katedru. Chcete učit? Vyplňte náš
           dotazník a my vám doporučíme seznam potřebných pedagogických
@@ -53,7 +53,7 @@ const Home: FC<Props> = ({
       <form>
         <H3>Na jakém školním stupni chcete učit?</H3>
         <Hint hintText="Příběhy učitelů z praxe" />
-        <StyleWrapper margin="2rem 0">
+        <StyleWrapper margin="1rem 0">
           {firstStep.chooseDegreeState.map((button, idx) => (
             <Input
               key={idx}
