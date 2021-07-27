@@ -41,7 +41,7 @@ const Home: FC<Props> = ({
       </StyleWrapper>
       <StyleWrapper margin="0 0 3rem 0">
         <LightText>
-          Udělejte další krok na cestě za katedru.Chcete učit? Vyplňte náš
+          Udělejte další krok na cestě za katedru. Chcete učit? Vyplňte náš
           dotazník a my vám doporučíme seznam potřebných pedagogických
           studijních programů a kurzů, nebo jednoduše zjistíte, že můžete začít
           učit třeba hned.
@@ -75,7 +75,7 @@ const Home: FC<Props> = ({
             value="Pokračovat   >"
             type="button"
             disabled={buttonIsDisabled}
-            padding="1.5rem 2rem"
+            padding="1rem 2rem"
             margin="2.5rem 0 0 0"
             bgColor={theme.color.primary}
             onClick={() => {

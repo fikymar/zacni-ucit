@@ -7,7 +7,7 @@ type Props = { hintText: string };
 
 export const Hint: FC<Props> = ({ hintText }) => (
   <div>
-    <Image src={infoIcon} height="15" width="15" />
+    <Image src={infoIcon} height="13.33" width="13.33" />
     <HintText>{hintText}</HintText>
   </div>
 );

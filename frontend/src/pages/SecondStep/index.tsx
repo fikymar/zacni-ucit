@@ -18,13 +18,18 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import CustomStepper from '../../components/Stepper';
 import { theme } from '../../common/theme';
 import { Hint } from '../../components/Hint';
+import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
       margin: theme.spacing(1),
       width: '95%',
+      color: 'green',
     },
+    // '& .MuiInputBase-input': {
+    //   color: 'red',
+    // },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
@@ -47,13 +52,10 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
   return (
     <Wrap>
       <CustomStepper activeStep={1} />
-      <StyleWrapper margin="0rem 0 1rem 0">
-        <H2>Jaký předmět chcete učit?</H2>
+      <StyleWrapper margin="0 0 2rem 0">
+        <H3>Jaký předmět chcete učit?</H3>
       </StyleWrapper>
-      <Hint hintText="Chcete učit více předmětů?" />
-      <Hint hintText="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
-
-      <PrimaryText>
+      <PrimaryText size="1rem">
         Pro{' '}
         {firstStep.chooseDegreeState.map((button, idx) => {
           if (button.checked) {
@@ -61,17 +63,12 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
           }
         })}
       </PrimaryText>
-      <StyleWrapper margin="0 0 3rem 0">
-        <LightText>
-          Vyberte si prosím pouze jeden předmět. V případě, že chcete učit i
-          nějaký další předmět, je potřeba vybrat z daných kombinací studijních
-          dvouoborů. Pokud vám ani jedna nebude vyhovovat, můžete se na výuce
-          druhého předmětu domluvit až přímo se svým zaměstnavatelem: ředitelem
-          školy.
-        </LightText>
+      <StyleWrapper margin="0 0 1rem 0">
+        <LightText>Vyberte si prosím pouze jeden předmět.</LightText>
       </StyleWrapper>
-      <StyleWrapper margin="2rem 0"></StyleWrapper>
-      <FormControl className={classes.formControl}>
+      <Hint hintText="Chcete učit více předmětů?" />
+      <Hint hintText="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
+      <FormControl className={classes.formControl} variant="outlined">
         {/* <InputLabel id="demo-simple-select-label">Vyberte předmět</InputLabel> */}
         <Select
           labelId="demo-simple-select-label"
@@ -88,13 +85,16 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
         <Input
           value="Pokračovat   >"
           type="button"
-          padding="1.5rem 2rem"
-          margin="2.5rem 0 0 0"
+          padding="1rem 2rem"
+          margin="2.5rem 0 1rem 0"
           bgColor={theme.color.primary}
           onClick={() => {
             router.push('/vyber-vzdelani');
           }}
         />
+      </StyleWrapper>
+      <StyleWrapper textAlign="center">
+        <Hint hintText="Nevíte si rady s výběrem předmětu? Napište nám" />
       </StyleWrapper>
     </Wrap>
   );

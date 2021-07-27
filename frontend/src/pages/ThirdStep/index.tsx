@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Input } from '../../components/Input';
-import { H3, H2, LightText, PrimaryText } from '../../components/Typography';
+import { H4, H3, LightText, PrimaryText } from '../../components/Typography';
 import { Wrap } from './styled';
 import StyleWrapper from '../../components/StyledWrapper';
 import { AppState } from '../../store/';
@@ -42,30 +42,32 @@ const ThirdStep: FC<Props> = ({
   return (
     <Wrap>
       <CustomStepper activeStep={2} />
-      <StyleWrapper margin="0rem 0 1rem 0">
-        <H2>Jaké je Vaše vzdělání?</H2>
+      <StyleWrapper margin="0rem 0 2rem 0">
+        <H3>Jaké je Vaše vzdělání?</H3>
       </StyleWrapper>
-      <H3>
-        Vyberte všechna vaše vzdělání, která by mohla být relevantní pro učení
-        předmětu <PrimaryText size="1em">{secondStep}</PrimaryText> na 
-        <PrimaryText size="1em">
+      <H4>
+        Vyberte vaše vzdělání, které by mohlo být relevantní pro učení
+        <PrimaryText size="16px" marginLeft="5px">
+          {secondStep}
+        </PrimaryText>{' '}
+        na 
+        <PrimaryText size="16px">
           {firstStep.chooseDegreeState.map((button, idx) => {
             if (button.checked) {
               return button.label;
             }
           })}
         </PrimaryText>
-      </H3>
-      <StyleWrapper margin="2rem 0 3rem 0">
+      </H4>
+      <StyleWrapper margin="1rem 0 1rem 0">
         <LightText>
-          Poznámka: Vyšší než magisterský stupeň vzdělání není pro učitelství
-          podstatný. Relevantní pro učitelství je pouze maturita z odborných
-          předmětů ze SOU nebo SOŠ.
+          Vyšší než magisterský stupeň ani maturita bez odborných předmětů
+          nejsou pro učitelství podstatné.
         </LightText>
       </StyleWrapper>
       <Hint hintText="Nevíte si rady? Napište nám" />
       <form>
-        <StyleWrapper margin="2rem 0">
+        <StyleWrapper margin="1rem 0">
           {thirdStep.chooseDegreeState.map((button, idx) => (
             <Input
               key={idx}
@@ -82,12 +84,12 @@ const ThirdStep: FC<Props> = ({
             />
           ))}
         </StyleWrapper>
-        <StyleWrapper textAlign="center" padding="0 0 7rem 0">
+        <StyleWrapper textAlign="center">
           <Input
             value="Pokračovat   >"
             type="button"
             disabled={buttonIsDisabled}
-            padding="1.5rem 2rem"
+            padding="1rem 2rem"
             margin="2.5rem 0 0 0"
             bgColor={theme.color.primary}
             onClick={() => {
