@@ -28,7 +28,7 @@ const Layout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const isAuthenticated = true;
   return (
-    <MainWrap homePage={router.pathname === '/'}>
+    <MainWrap step1={router.pathname === '/vyber-stupne'}>
       {/* <HeaderSection>
           <Logo href={routes.HOMEPAGE}>ZačniUČIT</Logo>
         </HeaderSection>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Input } from '../../components/Input';
 import { H4, H3, LightText, PrimaryText } from '../../components/Typography';
 import { Wrap } from './styled';
-import StyleWrapper from '../../components/StyledWrapper';
+import StyleWrapper, { WrapCenter } from '../../components/StyledWrapper';
 import { AppState } from '../../store/';
 import { connect } from 'react-redux';
 import {
@@ -15,7 +15,7 @@ import {
   FirstStepForm,
   SecondStepForm,
 } from '../../common/types';
-import CustomStepper from '../../components/Stepper';
+import CustomStepper from '../../components/Stepper/Stepper';
 import { theme } from '../../common/theme';
 import { Hint } from '../../components/Hint';
 
@@ -41,7 +41,7 @@ const ThirdStep: FC<Props> = ({
   // const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
   return (
     <Wrap>
-      <CustomStepper activeStep={2} />
+      <CustomStepper currentStep={3} />
       <StyleWrapper margin="0rem 0 2rem 0">
         <H3>Jaké je Vaše vzdělání?</H3>
       </StyleWrapper>
@@ -84,7 +84,7 @@ const ThirdStep: FC<Props> = ({
             />
           ))}
         </StyleWrapper>
-        <StyleWrapper textAlign="center">
+        <WrapCenter>
           <Input
             value="Pokračovat   >"
             type="button"
@@ -96,7 +96,7 @@ const ThirdStep: FC<Props> = ({
               router.push('/vyber-specializace');
             }}
           />
-        </StyleWrapper>
+        </WrapCenter>
       </form>
     </Wrap>
   );

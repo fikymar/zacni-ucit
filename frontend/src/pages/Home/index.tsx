@@ -12,7 +12,7 @@ import {
 } from '../../store/firstStep/actions';
 import { FirstStepForm } from '../../common/types';
 import { theme } from '../../common/theme';
-import CustomStepper from '../../components/Stepper';
+import CustomStepper from '../../components/Stepper/Stepper';
 import { Hint } from '../../components/Hint';
 
 type Props = {
@@ -32,7 +32,7 @@ const Home: FC<Props> = ({
   const router = useRouter();
   // const [buttonIsDisabled, setButtonIsDisabled] = useState(true);
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
 
   return (
     <Wrap>
@@ -48,7 +48,7 @@ const Home: FC<Props> = ({
         </LightText>
       </StyleWrapper>
 
-      <CustomStepper activeStep={activeStep} />
+      <CustomStepper currentStep={currentStep} />
 
       <form>
         <H3>Na jakém školním stupni chcete učit?</H3>

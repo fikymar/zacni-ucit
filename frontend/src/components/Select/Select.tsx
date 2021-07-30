@@ -2,13 +2,6 @@ import styled from 'styled-components';
 import { mediaQueries } from '../../common/mediaQueries';
 import { theme } from '../../common/theme';
 
-export const Wrap = styled.main`
-  margin: 0 10vw;
-  ${mediaQueries('md')`
-  margin: 0 2rem;
-  `}
-`;
-
 export const Select = styled.select`
   width: 100%;
   margin: 0;

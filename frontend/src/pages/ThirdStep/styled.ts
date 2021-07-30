@@ -4,7 +4,7 @@ import { mediaQueries } from '../../common/mediaQueries';
 export const Wrap = styled.main`
   margin: 0 10vw;
   ${mediaQueries('md')`
-  margin: 0;
+  margin: 0 2rem;
   `}
 `;
 

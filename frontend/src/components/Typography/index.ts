@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { textAlign, TextAlignProps } from 'styled-system';
+import { theme } from '../../common/theme';
 
 const headerFonts = css`
   ${textAlign}
@@ -8,7 +9,12 @@ const headerFonts = css`
 export const H1 = styled.h1<TextAlignProps>`
   font-weight: bold;
   margin: 0;
+  font-size: 32px;
   ${headerFonts}
+  & span {
+    font-size: ${theme.fontSize.large};
+    font-weight: 400;
+  }
 `;
 
 export const H2 = styled.h2`
@@ -44,4 +50,17 @@ export const PrimaryText = styled.span<{
   color: ${({ theme }) => theme.color.primary};
   margin: 0;
   margin-left: ${({ marginLeft }) => (!!marginLeft ? marginLeft : 0)};
+`;
+
+export const LinkRegular = styled.a<{
+  color?: string;
+}>`
+  font-size: ${theme.fontSize.medium};
+  font-weight: 700;
+  color: ${({ color }) => (!!color ? color : 'inherit')};
+  text-decoration: underline;
+  margin-right: 1rem;
+  &:hover {
+    color: inherit;
+  }
 `;

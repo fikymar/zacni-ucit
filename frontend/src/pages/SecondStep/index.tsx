@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Wrap } from './styled';
+import { Select } from '../../components/Select/Select';
 import { AppState } from '../../store/';
 import { connect } from 'react-redux';
 import { setSecondStep } from '../../store/secondStep/actions';
@@ -9,79 +10,78 @@ import StyleWrapper from '../../components/StyledWrapper';
 import { H3, H2, LightText, PrimaryText } from '../../components/Typography';
 import subjects from '../../constants/subjects';
 import { Input } from '../../components/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Select from '@material-ui/core/Select';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import CustomStepper from '../../components/Stepper';
+import CustomStepper from '../../components/Stepper/Stepper';
 import { theme } from '../../common/theme';
-import { styled } from '@material-ui/core/styles';
 import { Hint } from '../../components/Hint';
-import { green } from '@material-ui/core/colors';
-import { FormControl } from '@material-ui/core';
+//import InputLabel from '@material-ui/core/InputLabel';
+//import MenuItem from '@material-ui/core/MenuItem';
+//import FormHelperText from '@material-ui/core/FormHelperText';
+//import Select from '@material-ui/core/Select';
+//import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+//import { styled } from '@material-ui/core/styles';
+//import { FormControl } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      // margin: theme.spacing(1),
-      width: '100%',
-      outlineColor: 'red',
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  })
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     formControl: {
+//       // margin: theme.spacing(1),
+//       width: '100%',
+//       outlineColor: 'red',
+//     },
+//     selectEmpty: {
+//       marginTop: theme.spacing(2),
+//     },
+//   })
+// );
 
-const GreenFormControl = styled(FormControl)({
-  '& .MuiInputBase-input': {
-    color: theme.color.green,
-  },
-  '& .MuiInputBase-root': {
-    fontFamily: 'inherit',
-    fontWeight: 'bold',
-  },
-  '& .MenuItem-root': {
-    fontFamily: 'inherit',
-    fontWeight: 'bold',
-  },
-  '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
-    color: theme.color.green,
-  },
+// const GreenFormControl = styled(FormControl)({
+//   '& .MuiInputBase-input': {
+//     color: theme.color.green,
+//   },
+//   '& .MuiInputBase-root': {
+//     fontFamily: 'inherit',
+//     fontWeight: 'bold',
+//   },
+//   '& .MenuItem-root': {
+//     fontFamily: 'inherit',
+//     fontWeight: 'bold',
+//   },
+//   '& .MuiListItem-root.Mui-selected, .MuiListItem-root.Mui-selected:hover': {
+//     color: theme.color.green,
+//   },
 
-  '& .MuiOutlinedInput-root': {
-    fontFamily: 'inherit',
-    fontWeight: 'bold',
-  },
-  '& .MuiSelect-outlined': {
-    fontFamily: 'inherit',
-    fontWeight: 'bold',
-    color: theme.color.green,
-  },
-  '& .MuiSelect-icon': {
-    color: theme.color.primary,
-  },
-  '& .MuiSvgIcon-root': {
-    color: theme.color.primary,
+//   '& .MuiOutlinedInput-root': {
+//     fontFamily: 'inherit',
+//     fontWeight: 'bold',
+//   },
+//   '& .MuiSelect-outlined': {
+//     fontFamily: 'inherit',
+//     fontWeight: 'bold',
+//     color: theme.color.green,
+//   },
+//   '& .MuiSelect-icon': {
+//     color: theme.color.primary,
+//   },
+//   '& .MuiSvgIcon-root': {
+//     color: theme.color.primary,
 
-    // '& path': {
-    //   stroke: theme.color.primary,
-    //   strokeWidth: '2',
-    // },
-  },
-  '& .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.color.primary,
-  },
+//     // '& path': {
+//     //   stroke: theme.color.primary,
+//     //   strokeWidth: '2',
+//     // },
+//   },
+//   '& .MuiOutlinedInput-notchedOutline': {
+//     borderColor: theme.color.primary,
+//   },
 
-  '& .Mui-focused': {
-    borderColor: theme.color.green,
-  },
+//   '& .Mui-focused': {
+//     borderColor: theme.color.green,
+//   },
 
-  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-    borderColor: theme.color.green,
-  },
-});
+//   '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+//     borderColor: theme.color.green,
+//   },
+// });
 
 type Props = {
   secondStep: SecondStepForm;
@@ -91,14 +91,14 @@ type Props = {
 
 const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
   const router = useRouter();
-  const classes = useStyles();
+  //const classes = useStyles();
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSecondStep(event.target.value as string);
   };
   return (
     <Wrap>
-      <CustomStepper activeStep={1} />
+      <CustomStepper currentStep={2} />
       <StyleWrapper margin="0 0 2rem 0">
         <H3>Jaký předmět chcete učit?</H3>
       </StyleWrapper>
@@ -117,9 +117,9 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
         <Hint hintText="Chcete učit více předmětů?" />
         <Hint hintText="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
       </StyleWrapper>
-      <GreenFormControl className={classes.formControl} variant="outlined">
+      {/* <GreenFormControl className={classes.formControl} variant="outlined">
         {/* <InputLabel id="demo-simple-select-label">Vyberte předmět</InputLabel> */}
-        <Select
+      {/*<Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={secondStep}
@@ -129,7 +129,14 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
             <MenuItem value={subject}>{subject}</MenuItem>
           ))}
         </Select>
-      </GreenFormControl>
+      </GreenFormControl> */}
+      <form>
+        <Select name="subject" id="subject" autoFocus aria-label="Subject">
+          {subjects.map((subject) => (
+            <option value={subject}>{subject}</option>
+          ))}
+        </Select>
+      </form>
       <StyleWrapper textAlign="center">
         <Input
           value="Pokračovat   >"
