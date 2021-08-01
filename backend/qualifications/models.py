@@ -1,10 +1,8 @@
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
+from teaching.models import SchoolLevel
 
-from common.models import GraphModel
-
-
-class CollegeArea(TimeStampedModel, GraphModel):
+class CollegeArea(TimeStampedModel):
     name = models.CharField("Název oblasti", max_length=100, unique=True)
 
     class Meta:
@@ -15,13 +13,8 @@ class CollegeArea(TimeStampedModel, GraphModel):
     def __str__(self):
         return self.name
 
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
 
-
-class CollegeProgramme(TimeStampedModel, GraphModel):
+class CollegeProgramme(TimeStampedModel):
     """
     Zdroj: https://docs.google.com/spreadsheets/d/1msJu1AX_-wYLbhvz8rqsZxFMBwX7-xzghCAFHeeBQEI/edit#gid=0
     """
@@ -48,21 +41,8 @@ class CollegeProgramme(TimeStampedModel, GraphModel):
     def __str__(self):
         return self.name
 
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
 
-    def related_graph_data(self):
-        return [
-            # CollegeProgramme - BELONGS_TO -> CollegeArea
-            ("-", "BELONGS_TO", "->", "area"),
-            # CollegeProgramme <- BELONGS_TO - Subject
-            ("<-", "BELONGS_TO", "-", "subjects"),
-        ]
-
-
-class EducationArea(TimeStampedModel, GraphModel):
+class EducationArea(TimeStampedModel):
     name = models.CharField("Název", max_length=512, unique=True)
 
     class Meta:
@@ -73,32 +53,12 @@ class EducationArea(TimeStampedModel, GraphModel):
     def __str__(self):
         return self.name
 
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
 
-
-class PreparationType(TimeStampedModel, GraphModel):
-    name = models.CharField("Název", max_length=200, unique=True)
-
-    class Meta:
-        verbose_name = "Typ přípravy učitelů"
-        verbose_name_plural = "Typy příprav učitelů"
-        ordering = ("name",)
-
-    def __str__(self):
-        return self.name
-
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
-
-
-class SubjectType(TimeStampedModel, GraphModel):
+class SubjectType(TimeStampedModel):
     name = models.CharField("Název", max_length=512, unique=True)
 
+class PreparationType(TimeStampedModel):
+    name = models.CharField("Název", max_length=200, unique=True)
     class Meta:
         verbose_name = "Typ předmětů"
         verbose_name_plural = "Typy předmětů"
@@ -107,32 +67,44 @@ class SubjectType(TimeStampedModel, GraphModel):
     def __str__(self):
         return self.name
 
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
 
 
-class EducationType(TimeStampedModel, GraphModel):
+class Title(TimeStampedModel):
+    """
+    Titul.
+    """
+    name = models.CharField("Název", max_length=100)
+    code = models.CharField("Zkratka", max_length=20, unique=True)
+
+class SubjectType(TimeStampedModel):
+    name = models.CharField("Název", max_length=512, unique=True)
+
+    class Meta:
+        verbose_name = "Titul"
+        verbose_name_plural = "Tituly"
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.code
+
+class EducationType(TimeStampedModel):
     """
     Typ vzdelani z hlediska zakona.
     """
 
     TITLE_QUALIFICATION = "titul"
     CZV_QUALIFICATION = "czv"
-    OTHER_QUALIFICATION = "dalsi"
+    OTHER_EXPERIENCE = "dalsi"
     QUALIFICATION_TYPE_CHOICES = (
         (TITLE_QUALIFICATION, "Titul"),
         (CZV_QUALIFICATION, "Kurz CŽV"),
-        (OTHER_QUALIFICATION, "Další možnosti"),
+        (OTHER_EXPERIENCE, "Další zkušenost"),
     )
-
     qualification_type = models.CharField("Typ kvalifikace", max_length=20, choices=QUALIFICATION_TYPE_CHOICES)
-    title = models.ForeignKey("qualifications.Title", on_delete=models.SET_NULL, null=True, verbose_name="Titul")
+    name = models.CharField("Název", max_length=200)  # zákonná formulace
+    title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True, verbose_name="Titul")
     area = models.ForeignKey(EducationArea, on_delete=models.SET_NULL, null=True, verbose_name="Oblast VŠ vzdělávání")
-    preparation_type = models.ForeignKey(
-        PreparationType, on_delete=models.SET_NULL, null=True, verbose_name="Typ přípravy učitelů"
-    )
+    character = models.CharField("Charakter", max_length=100)
     subject_type = models.ForeignKey(SubjectType, on_delete=models.SET_NULL, null=True, verbose_name="Typ předmětů")
     school_levels = models.ManyToManyField(
         "teaching.SchoolLevel", related_name="education_types", verbose_name="Stupeň školy"
@@ -146,50 +118,36 @@ class EducationType(TimeStampedModel, GraphModel):
     def __str__(self):
         return f"{self.qualification_type} / {self.area} / {self.subject_type}"
 
-    def graph_data(self):
-        return {
-            "qualification_type": self.qualification_type,
-        }
+class Qualification(TimeStampedModel):
+    legal_paragraph = models.CharField("Paragraf zákona", max_length=400, unique=True)
+    example = models.CharField("Paragraf zákona", max_length=400, unique=True)
+    row_id = models.SmallIntegerField()
+    subject_type = models.ForeignKey(SubjectType, default='', on_delete=models.SET_DEFAULT, null=False, verbose_name="Typ předmětů")
+    school_level = models.ForeignKey(SchoolLevel, default='', on_delete=models.SET_DEFAULT, null=False, verbose_name="Stupeň školy")
+    education_types = models.ManyToManyField(
+        EducationType,
+        verbose_name="Typ vzdělání z hlediska zákona",
+        help_text="Typ vzdělání z hlediska zákona",
+    )
+    note = models.TextField("Poznámka", null=True)
 
-    def related_graph_data(self):
-        return [
-            # EducationType - BELONGS_TO -> Title
-            ("-", "BELONGS_TO", "->", "title"),
-            # EducationType - BELONGS_TO -> EducationArea
-            ("-", "BELONGS_TO", "->", "area"),
-            # EducationType - BELONGS_TO -> PreparationType
-            ("-", "BELONGS_TO", "->", "preparation_type"),
-            # EducationType - BELONGS_TO -> SubjectObjectType
-            ("-", "BELONGS_TO", "->", "subject_type"),
-            # EducationType <- BELONGS_TO - SchoolLevel
-            ("<-", "BELONGS_TO", "-", "school_levels"),
-        ]
-
-
-class Title(TimeStampedModel, GraphModel):
+class Title(TimeStampedModel):
     """
     Titul.
     """
 
     name = models.CharField("Název", max_length=100)
     code = models.CharField("Zkratka", max_length=20, unique=True)
-
     class Meta:
-        verbose_name = "Titul"
-        verbose_name_plural = "Tituly"
-        ordering = ("name",)
+        verbose_name = "Kvalifikace"
+        verbose_name_plural = "Kvalifikace"
+        ordering = ("name", "code")
 
     def __str__(self):
-        return self.code
-
-    def graph_data(self):
-        return {
-            "name": self.name,
-            "code": self.code,
-        }
+        return self.name
 
 
-class OtherOption(TimeStampedModel, GraphModel):
+class OtherExperience(TimeStampedModel):
     """
     Dalsi moznosti krome TITULu nebo Kurzu CZV.
 
@@ -205,8 +163,3 @@ class OtherOption(TimeStampedModel, GraphModel):
 
     def __str__(self):
         return self.name
-
-    def graph_data(self):
-        return {
-            "name": self.name,
-        }
