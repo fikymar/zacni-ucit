@@ -47,7 +47,6 @@ const Home: FC<Props> = ({
           učit třeba hned.
         </LightText>
       </StyleWrapper>
-
       <CustomStepper currentStep={currentStep} />
 
       <form>
