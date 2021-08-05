@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { FooterSection1, Flex1, FlexColumn } from './styled';
+import { FooterSection1, FlexRowSB, FlexColumn } from './styled';
 import Image from 'next/image';
 import hatIcon from '../../../../public/images/hat-icon.svg';
 import rowRight from '../../../../public/images/row-right-icon.svg';
@@ -13,7 +13,7 @@ const Footer: FC<Props> = () => {
   return (
     <footer>
       <FooterSection1 className="footer_section1">
-        <Flex1>
+        <FlexRowSB>
           <FlexColumn>
             <LinkRegular
               href="http://"
@@ -53,8 +53,8 @@ const Footer: FC<Props> = () => {
               Volná místa ve školství
             </LinkLight>
           </FlexColumn>
-        </Flex1>
-        <Flex1>
+        </FlexRowSB>
+        <FlexRowSB>
           <FlexColumn>
             <LinkRegular
               href="http://"
@@ -85,7 +85,7 @@ const Footer: FC<Props> = () => {
               Tipy pro začínající učitele
             </LinkLight>
           </FlexColumn>
-        </Flex1>
+        </FlexRowSB>
         <LinkRegular href="http://" target="_blank" rel="noopener noreferrer">
           Začni učit!je projektem spolku Výluka
         </LinkRegular>

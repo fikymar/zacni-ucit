@@ -65,7 +65,7 @@ const ThirdStep: FC<Props> = ({
           nejsou pro učitelství podstatné.
         </LightText>
       </StyleWrapper>
-      <Hint hintText="Nevíte si rady? Napište nám" />
+      <Hint text="Nevíte si rady? Napište nám" />
       <form>
         <StyleWrapper margin="1rem 0">
           {thirdStep.chooseDegreeState.map((button, idx) => (

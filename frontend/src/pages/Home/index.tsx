@@ -12,7 +12,7 @@ import {
 } from '../../store/firstStep/actions';
 import { FirstStepForm } from '../../common/types';
 import { theme } from '../../common/theme';
-import CustomStepper from '../../components/Stepper/Stepper';
+import Stepper from '../../components/Stepper/Stepper';
 import { Hint } from '../../components/Hint';
 
 type Props = {
@@ -47,11 +47,11 @@ const Home: FC<Props> = ({
           učit třeba hned.
         </LightText>
       </StyleWrapper>
-      <CustomStepper currentStep={currentStep} />
+      <Stepper currentStep={currentStep} />
 
       <form>
         <H3>Na jakém školním stupni chcete učit?</H3>
-        <Hint hintText="Příběhy učitelů z praxe" />
+        <Hint text="Příběhy učitelů z praxe" />
         <StyleWrapper margin="1rem 0">
           {firstStep.chooseDegreeState.map((button, idx) => (
             <Input

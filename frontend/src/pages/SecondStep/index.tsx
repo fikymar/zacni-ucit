@@ -44,8 +44,8 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
         <LightText>Vyberte si prosím pouze jeden předmět.</LightText>
       </StyleWrapper>
       <StyleWrapper margin="0 0 1rem 0">
-        <Hint hintText="Chcete učit více předmětů?" />
-        <Hint hintText="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
+        <Hint text="Chcete učit více předmětů?" />
+        <Hint text="Zjistěte, jaké předměty můžete s vaším vzděláním vyučovat" />
       </StyleWrapper>
       <form>
         <Select name="subject" id="subject" autoFocus aria-label="Subject">
@@ -67,7 +67,7 @@ const SecondStep: FC<Props> = ({ setSecondStep, secondStep, firstStep }) => {
         />
       </StyleWrapper>
       <StyleWrapper textAlign="center" padding="0 0 2rem 0">
-        <Hint hintText="Nevíte si rady s výběrem předmětu? Napište nám" />
+        <Hint text="Nevíte si rady s výběrem předmětu? Napište nám" />
       </StyleWrapper>
     </Wrap>
   );
