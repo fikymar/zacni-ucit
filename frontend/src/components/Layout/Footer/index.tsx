@@ -1,17 +1,22 @@
 import React, { FC } from 'react';
-import { FooterSection1, FlexRowSB, FlexColumn } from './styled';
-import Image from 'next/image';
-import hatIcon from '../../../../public/images/hat-icon.svg';
-import rowRight from '../../../../public/images/row-right-icon.svg';
-import Link from 'next/link';
-import { H3, LinkLight, LinkRegular } from '../../Typography';
+import {
+  FooterSection1,
+  FlexRowSB,
+  FlexColumn,
+  SmallText,
+  LinkSmall,
+  FooterWrap,
+} from './styled';
+import { H3, H4, LightText, LinkLight, LinkRegular } from '../../Typography';
 import StyleWrapper from '../../StyledWrapper';
+import { Input } from '@components/Input';
+import { theme } from 'src/common/theme';
 
 type Props = {};
 
 const Footer: FC<Props> = () => {
   return (
-    <footer>
+    <FooterWrap>
       <FooterSection1 className="footer_section1">
         <FlexRowSB>
           <FlexColumn>
@@ -89,14 +94,65 @@ const Footer: FC<Props> = () => {
         <LinkRegular href="http://" target="_blank" rel="noopener noreferrer">
           Začni učit!je projektem spolku Výluka
         </LinkRegular>
+        <br></br>
         <LinkRegular href="http://" target="_blank" rel="noopener noreferrer">
           Naši partneři a přispějte
         </LinkRegular>
       </FooterSection1>
-      <section className="footer_section2">
+      <FooterSection1 className="footer_section2">
         <H3>Výluka, z.s</H3>
-      </section>
-    </footer>
+        <LightText>
+          <b>Kampus Hybernská</b>
+        </LightText>
+        <LightText>Hybernská 4</LightText>
+        <LightText>110 00 Praha 1</LightText>
+        <LinkRegular href="mailto:info@vyluka.org">info@vyluka.org</LinkRegular>
+        <Input
+          value="Facebook"
+          type="button"
+          padding="1rem 2rem"
+          margin="1rem 0 1rem 0"
+          color={theme.color.primary}
+          bgColor="transparent"
+        />
+        <Input
+          value="Instagram"
+          type="button"
+          padding="1rem 2rem"
+          margin="1rem 0 1rem 0"
+          color={theme.color.primary}
+          bgColor="transparent"
+        />
+        <Input
+          value="Twitter"
+          type="button"
+          padding="1rem 2rem"
+          margin="1rem 0 1rem 0"
+          color={theme.color.primary}
+          bgColor="transparent"
+        />
+      </FooterSection1>
+      <FooterSection1 className="footer_section3">
+        <H4>Newsletter jednou měsíčně</H4>
+        <LightText>
+          Novinky pro budoucí i začínající učitele, tipy na zajímavé akce o
+          vzdělávání či na nástroje do výuky.
+        </LightText>
+        <form action="">
+          <input type="email" placeholder="email" />
+        </form>
+        <SmallText>Posláním adresy souhlasíte se </SmallText>{' '}
+        <LinkSmall>zpracováním osobních údajů.</LinkSmall>
+      </FooterSection1>
+      <FooterSection1 className="footer_section4">
+        <SmallText>
+          <b>Začni učit! </b>je projektem neziskové organizace Výluka.
+        </SmallText>
+        <StyleWrapper>
+          <SmallText>© 2021 Výluka, z.s. PROTOTYP</SmallText>
+        </StyleWrapper>
+      </FooterSection1>
+    </FooterWrap>
   );
 };
 
