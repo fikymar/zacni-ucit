@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import {
-  FooterSection1,
+  FooterSection,
   FlexRowSB,
   FlexColumn,
   SmallText,
@@ -17,7 +17,7 @@ type Props = {};
 const Footer: FC<Props> = () => {
   return (
     <FooterWrap>
-      <FooterSection1 className="footer_section1">
+      <FooterSection className="footer_section1">
         <FlexRowSB>
           <FlexColumn>
             <LinkRegular
@@ -58,8 +58,7 @@ const Footer: FC<Props> = () => {
               Volná místa ve školství
             </LinkLight>
           </FlexColumn>
-        </FlexRowSB>
-        <FlexRowSB>
+
           <FlexColumn>
             <LinkRegular
               href="http://"
@@ -98,8 +97,8 @@ const Footer: FC<Props> = () => {
         <LinkRegular href="http://" target="_blank" rel="noopener noreferrer">
           Naši partneři a přispějte
         </LinkRegular>
-      </FooterSection1>
-      <FooterSection1 className="footer_section2">
+      </FooterSection>
+      <FooterSection className="footer_section2">
         <H3>Výluka, z.s</H3>
         <LightText>
           <b>Kampus Hybernská</b>
@@ -131,8 +130,8 @@ const Footer: FC<Props> = () => {
           color={theme.color.primary}
           bgColor="transparent"
         />
-      </FooterSection1>
-      <FooterSection1 className="footer_section3">
+      </FooterSection>
+      <FooterSection className="footer_section3">
         <H4>Newsletter jednou měsíčně</H4>
         <LightText>
           Novinky pro budoucí i začínající učitele, tipy na zajímavé akce o
@@ -143,15 +142,15 @@ const Footer: FC<Props> = () => {
         </form>
         <SmallText>Posláním adresy souhlasíte se </SmallText>{' '}
         <LinkSmall>zpracováním osobních údajů.</LinkSmall>
-      </FooterSection1>
-      <FooterSection1 className="footer_section4">
+      </FooterSection>
+      <FooterSection className="footer_section4">
         <SmallText>
           <b>Začni učit! </b>je projektem neziskové organizace Výluka.
         </SmallText>
         <StyleWrapper>
           <SmallText>© 2021 Výluka, z.s. PROTOTYP</SmallText>
         </StyleWrapper>
-      </FooterSection1>
+      </FooterSection>
     </FooterWrap>
   );
 };
