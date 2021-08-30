@@ -2,7 +2,7 @@ const path = require('path');
 const withImages = require('next-images');
 
 module.exports = withImages({
-  fileExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+  fileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'pdf'],
   target: 'serverless',
   webpack: config => {
     config.module.rules.push({
@@ -15,6 +15,10 @@ module.exports = withImages({
         {
           test: /\.svg$/,
           loader: 'url-loader',
+        },
+        {
+          test: /\.pdf$/,
+          loader: 'file-loader',
         },
       ],
     });
